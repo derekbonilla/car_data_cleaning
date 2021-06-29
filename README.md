@@ -1,5 +1,3 @@
-## *Still working on this page...* 
-
 ## Intro
 
 ### Goal
