@@ -8,7 +8,7 @@ The goal of this project is to clean the data. Analyzing bad data could cause th
 
 ## Inspect the data
 
-According to the data description, should contain only two unique string values: diesel and gas. For this reason, this column should be inspected by checking its unique values. 
+According to the [data description](https://archive.ics.uci.edu/ml/datasets/Automobile), `fueltype` should contain only two unique string values: diesel and gas. For this reason, this column should be inspected by checking its unique values. 
 
 ```javascript
 SELECT 
@@ -19,9 +19,9 @@ FROM
 
 <img src="images/gas diesel result.png"/>
 
-Since these values agree with the values in the data description, I can verify that the data in the fueltype column is already clean.
+Since these values agree with the values in the data description, I can verify that the data in the `fueltype` column is already clean.
 
-According to the data description, the length column values should range from 141.1 to 208.1. I will make the following query containing the MIN() and MAX() functions to inspect the minimum and maximum values of this column:
+According to the [data description](https://archive.ics.uci.edu/ml/datasets/Automobile), the `length` column values should range from 141.1 to 208.1. I will make the following query containing the `MIN()` and `MAX()` functions to inspect the minimum and maximum values of this column:
 
 ```javascript
 SELECT 
@@ -35,7 +35,7 @@ Again the results in this column is clean.
 
 ### Fill in missing data
 
-Missing values in data can distort analysis results. One way to inspect a column for missing values in SQL is to use the IS NULL condition.
+Missing values in data can distort analysis results. One way to inspect a column for missing values in SQL is to use the `IS NULL` condition.
 
 ```javascript
 SELECT * 
@@ -45,9 +45,9 @@ WHERE doornumber IS null;
 
 <img src="images/null doors.png">
 
-The number of doors is only missing for one BMW and one Honda with sedan body styles. Also, the fuel type equals gas for the both BMW and the Honda
+A couple of values are missing in the `doornumber` column. One BMW and one Honda with sedan body styles. 
 
-Make a query to pull up BMW with matching attributes:
+Next I make a query to pull up BMW with matching attributes:
 
 ```javascript
 SELECT*
@@ -65,7 +65,7 @@ ORDER BY 1;
 
 I notice that there is also another BMW 320i with similar features. However, after doing additional research I can safely conclude that the missing value here should be four. 
 
-To make the replacement, make the following query using the UPDATE statement:
+To make the replacement, I make a query using the `UPDATE` statement:
 
 ```javascript
 UPDATE 
@@ -84,7 +84,7 @@ Now I repeat the same process for the Honda.
 
 ## Identify potential mistakes in the data
 
-Using the DISTINCT statement I check for erroneous data that can distort results.
+Using the `DISTINCT` statement I check for erroneous data that can distort results.
 
 ```javascript 
 SELECT
@@ -97,14 +97,14 @@ FROM
 
 I find that there are written values of numbers, and one of those number values is misspelled. 
 
-Using a similar used above I fix the misspelled value. Result looks like this:
+Using a similar query used above I fix the misspelled value. Result looks like this:
 
 <img src="images/distinct cylinder number fixed .png">
 
-Cylinder number column is now clean.
+The `cylindernumber` column is now clean.
 
 
-Some values include numbers in a range. I make a query to inspect the peakrpm column
+Some values include numbers in a range. I make a query to inspect the `peakrpm` column
 
 ```javascript
 SELECT 
@@ -116,7 +116,7 @@ Results look like this:
 
 <img src="images/minmax peakrpm .png">
 
-Sometimes values can be out of range. According to the data description, the peakrpm column values should range from 4150 to 6600.
+Sometimes values can be out of range. According to the data description, the `peakrpm` column values should have a range from 4150 to 6600.
 
 I will make a query to see if other values in this column are in range
 ```javascript
@@ -129,9 +129,7 @@ ORDER BY
  peakrpm ASC;
 ```
 
-Results are in range.
-
-To gain more insight I query:
+Other results are in range. To gain more insight on that specific error I query:
 
 ```javascript
 SELECT
@@ -144,7 +142,7 @@ WHERE
 
 <img src="images/peakrpm error.png">
 
-One result is returned. After doing additional research I can conclude that the correct number should be 5200. In SQL I will use the UPDATE statement fix the existing record in a table.
+One result is returned. After doing additional research I can conclude that the correct number should be 5200. In SQL I will use the `UPDATE` statement fix the existing record in a table.
 
 ```javascript
 SELECT 
@@ -156,18 +154,18 @@ ORDER BY
 
 ```
 
-I recheck to see if the erroneous value was fixed correctly. The peakrpm column should be clean.
+I recheck to see if the erroneous value was fixed correctly. The `peakrpm` column is now clean.
 
 
 ## Ensuring that the data is consistent
 
 Discrepancies can create inaccurate, unreliable results. This leads to misinformed business decisions.
 
-I will use the DISTINCT statement to check for data inconsistencies in enginelocation
+I will use the `DISTINCT` statement to check for data inconsistencies in enginelocation
 
 <img src="images/enginelocation.png">
 
-These values appear to agree. However, front appears twice. This is most likely happening because some front values include extra spaces. I will use the LENGTH function to understand this:
+These values appear to agree. However, front appears twice. This is most likely happening because some front values include extra spaces. I will use the `LENGTH` function to understand this:
 
 ```javascript
 SELECT  
@@ -178,7 +176,7 @@ GROUP BY
   enginelocation;
 ```
 
-The SQL LENGTH function identified an inconsistent point, front had 6 characters when there should only be 5. TO fix this I remove the leading space from this string. I will use the TRIM function to remove the space.
+The SQL `LENGTH` function identified an inconsistent point, front had 6 characters when there should only be 5. To fix this I remove the leading space from this string. I will use the `TRIM` function to remove the space.
 
 ```javascript
 UPDATE 
