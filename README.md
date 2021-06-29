@@ -1,10 +1,18 @@
 ## *Still working on this page...* 
 
+## Intro
+
+### Goal
+
+The goal of this project is to clean data in SQL. Cleaning incorrect is very important.  Analyzing bad data could cause the business owner to reach the wrong conclusions and, ultimately, lose money. Clean data yields good results. 
+
+### About the data
+Wandering around [Kaggle](https://www.kaggle.com/), I was looking for ideas on how to approach my SQL data cleaning project. I found the [CarPrice_Assignment](https://www.kaggle.com/goyalshalini93/car-data) dataset in another user’s notebook. It’s a great dataset to practice on because it contains inconsistencies that a data analyst would happen upon in a work project. 
+
 ### Real-world situation
 
 You are working with a local used car dealership. The dealership owner wants to know which cars customers are most likely to purchase so that they know what to keep in stock. From an external source, you obtain a data set that contains historical sales data on car prices and their related features: CarPrice_Assignment. You think these features can be used to give the dealership owner a list of the top popular cars and trims, and help determine which cars should be in the inventory.
 
-The goal of this project is to clean the data. Analyzing bad data could cause the business owner to reach the wrong conclusions and, ultimately, lose money.
 
 ## Inspect the data
 
