@@ -2,7 +2,7 @@
 
 ### Goal
 
-The goal of this project is to clean data in SQL. Cleaning incorrect is very important.  Analyzing bad data could cause the business owner to reach the wrong conclusions and, ultimately, lose money. Clean data yields good results. 
+The goal of this project is to clean data in SQL. Cleaning incorrect data is very important.  Analyzing bad data could cause a stakeholder or businesses to reach the wrong conclusions and, ultimately, lose money. Clean data yields good results. 
 
 ### About the data
 Wandering around [Kaggle](https://www.kaggle.com/), I was looking for ideas on how to approach my SQL data cleaning project. I found the [CarPrice_Assignment](https://www.kaggle.com/goyalshalini93/car-data) dataset in another user’s notebook. It’s a great dataset to practice on because it contains inconsistencies that a data analyst would happen upon in a work project. 
