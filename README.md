@@ -61,7 +61,7 @@ WHERE
 ORDER BY 1;
 ```
 
-[bmw null thumb]]
+[bmw null img]
 
 I notice that there is also another BMW 320i with similar features. However, after doing additional research I can safely conclude that the missing value here should be four. 
 
@@ -75,3 +75,31 @@ SET
 WHERE
   "car_ID" = '12'
 ```
+
+To verify that the missing value was filled in correctly, I made the same query previously and the results appeared like this:
+
+[bmw fixed null img]
+
+Now I repeat the same process for the Honda.
+
+## Identify potential mistakes in the data
+
+Using the DISTINCT statement I check for erroneous data that can distort results.
+
+```javascript 
+SELECT
+  DISTINCT(cylindernumber)
+FROM
+  public.car_data;
+```
+
+[distinct cylinder number img]
+
+I find that there are written values of numbers, and one of those number values is misspelled. 
+
+Using a similar used above I fix the misspelled value. Result looks like this:
+
+[distinct cylinder number fixed img] 
+
+Cylinder number column is now clean.
+
