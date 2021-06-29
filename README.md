@@ -122,7 +122,7 @@ Results look like this:
 
 <img src="images/minmax peakrpm .png">
 
-Sometimes values can be out of range. According to the data description, the `peakrpm` column values should have a range from 4150 to 6600.
+Sometimes values can be out of range. According to the [data description](https://archive.ics.uci.edu/ml/datasets/Automobile), the `peakrpm` column values should have a range from 4150 to 6600.
 
 I will make a query to see if other values in this column are in range
 ```javascript
@@ -151,13 +151,12 @@ WHERE
 One result is returned. After doing additional research I can conclude that the correct number should be 5200. In SQL I will use the `UPDATE` statement fix the existing record in a table.
 
 ```javascript
-SELECT 
-  peakrpm
-FROM 
+UPDATE 
   public.car_data
-ORDER BY 
- peakrpm ASC;
-
+SET 
+  peakrpm = '5200'
+WHERE 
+  peakrpm = '520';
 ```
 
 I recheck to see if the erroneous value was fixed correctly. The `peakrpm` column is now clean.
