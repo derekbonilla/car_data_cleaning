@@ -103,3 +103,102 @@ Using a similar used above I fix the misspelled value. Result looks like this:
 
 Cylinder number column is now clean.
 
+
+Some values include numbers in a range. I make a query to inspect the peakrpm column
+
+```javascript
+SELECT 
+  MIN(peakrpm) AS min_peakrpm, 
+  MAX(peakrpm) AS max_peakrpm
+FROM public.car_data
+```
+Results look like this:
+
+[minmax peakrpm thumb]
+
+Sometimes values can be out of range. According to the data description, the peakrpm column values should range from 4150 to 6600.
+
+I will make a query to see if other values in this column are in range
+```javascript
+
+SELECT 
+  peakrpm
+FROM 
+  public.car_data
+ORDER BY 
+ peakrpm ASC;
+```
+
+Results are in range.
+
+To gain more insight I query:
+
+```javascript
+SELECT
+  *
+FROM
+  cars.car_info
+WHERE
+ peakrpm = 520;
+```
+
+[peakrpm error thumb]
+
+One result is returned. After doing additional research I can conclude that the correct number should be 5200. In SQL I will use the UPDATE statement fix the existing record in a table.
+
+```javascript
+SELECT 
+  peakrpm
+FROM 
+  public.car_data
+ORDER BY 
+ peakrpm ASC;
+
+```
+
+I recheck to see if the erroneous value was fixed correctly. The peakrpm column should be clean.
+
+
+## Ensuring that the data is consistent
+
+Discrepancies can create inaccurate, unreliable results. This leads to misinformed business decisions.
+
+I will use the DISTINCT statement to check for data inconsistencies in enginelocation
+
+[enginelocation thumb]
+
+These values appear to agree. However, front appears twice. This is most likely happening because some front values include extra spaces. I will use the LENGTH function to understand this:
+
+```javascript
+SELECT  
+  LENGTH (enginelocation) AS length_enginelocation
+FROM 
+  public.car_data
+GROUP BY 
+  enginelocation;
+```
+
+The SQL LENGTH function identified an inconsistent point, front had 6 characters when there should only be 5. TO fix this I remove the leading space from this string. I will use the TRIM function to remove the space.
+
+```javascript
+UPDATE 
+  public.car_data
+SET
+  enginelocation = TRIM (enginelocation)
+WHERE 
+  LENGTH (enginelocation) > 5;
+
+```
+
+
+I verify if the space was removed with a query and get these results
+
+[enginelocation fixed thumb]]
+
+Now this column is clean.
+
+
+## Conclusion
+
+Working with clean data will insure that investors make good decisions about their stock. 
+
