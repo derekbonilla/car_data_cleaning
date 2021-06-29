@@ -17,7 +17,7 @@ FROM
   public.car_data
 ```
 
-[gas diesel result img]
+<img src="images/gas diesel result.png"/>
 
 Since these values agree with the values in the data description, I can verify that the data in the fueltype column is already clean.
 
@@ -29,7 +29,7 @@ SELECT
   MAX(carlength) AS max_length
 FROM public.car_data
 ```
-[min max length img]
+<img src="images/min max length.png">
 
 Again the results in this column is clean.
 
@@ -43,7 +43,7 @@ FROM public.car_data
 WHERE doornumber IS null;
 ```
 
-[null doors img]
+<img src="images/null doors.png">
 
 The number of doors is only missing for one BMW and one Honda with sedan body styles. Also, the fuel type equals gas for the both BMW and the Honda
 
@@ -61,7 +61,7 @@ WHERE
 ORDER BY 1;
 ```
 
-[bmw null img]
+<img src="images/bmw null.png">
 
 I notice that there is also another BMW 320i with similar features. However, after doing additional research I can safely conclude that the missing value here should be four. 
 
@@ -78,7 +78,7 @@ WHERE
 
 To verify that the missing value was filled in correctly, I made the same query previously and the results appeared like this:
 
-[bmw fixed null img]
+<img src="images/bmw fixed null .png">
 
 Now I repeat the same process for the Honda.
 
@@ -93,13 +93,13 @@ FROM
   public.car_data;
 ```
 
-[distinct cylinder number img]
+<img src="images/distinct cylinder number .png">
 
 I find that there are written values of numbers, and one of those number values is misspelled. 
 
 Using a similar used above I fix the misspelled value. Result looks like this:
 
-[distinct cylinder number fixed img] 
+<img src="images/distinct cylinder number fixed .png">
 
 Cylinder number column is now clean.
 
@@ -114,7 +114,7 @@ FROM public.car_data
 ```
 Results look like this:
 
-[minmax peakrpm thumb]
+<img src="images/minmax peakrpm .png">
 
 Sometimes values can be out of range. According to the data description, the peakrpm column values should range from 4150 to 6600.
 
@@ -142,7 +142,7 @@ WHERE
  peakrpm = 520;
 ```
 
-[peakrpm error thumb]
+<img src="images/peakrpm error.png">
 
 One result is returned. After doing additional research I can conclude that the correct number should be 5200. In SQL I will use the UPDATE statement fix the existing record in a table.
 
@@ -165,7 +165,7 @@ Discrepancies can create inaccurate, unreliable results. This leads to misinform
 
 I will use the DISTINCT statement to check for data inconsistencies in enginelocation
 
-[enginelocation thumb]
+<img src="images/enginelocation.png">
 
 These values appear to agree. However, front appears twice. This is most likely happening because some front values include extra spaces. I will use the LENGTH function to understand this:
 
@@ -193,7 +193,7 @@ WHERE
 
 I verify if the space was removed with a query and get these results
 
-[enginelocation fixed thumb]]
+<img src="images/enginelocation fixed.png">
 
 Now this column is clean.
 
